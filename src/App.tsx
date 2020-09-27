@@ -1,6 +1,9 @@
 import React from 'react';
 
-const App = () => <div>myAPP!!!! 523876</div>
+const App = () => {
+return <div>
+    <div>What the faaaaaaaaaaaaahhhhhhkkkkkkkkkkkkkk!!!!</div>
+</div>}
 
 export default App;
 
