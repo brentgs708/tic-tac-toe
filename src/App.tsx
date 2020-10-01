@@ -17,11 +17,51 @@ const App = () => {
   ])
 const [startingTurn, setStartingTurn] = useState<SYMBOL>( 'X') 
 const [isXTurn, setIsXTurn] = useState<boolean>(startingTurn === 'X')
+const [turnNumber, setTurnNumber] = useState<number>(0)
 
 function handleClick(index: number){
 if (board[index] === '-') {
   const newBoard = [...board]
   newBoard[index] = isXTurn ? 'X' : 'O'
+
+  //check which player wins
+  if (turnNumber >= 5 ) {
+    console.log('check Starting')
+    let winner = false 
+    if (isXTurn){
+      if (
+        (newBoard[0] === 'X') && (newBoard[1] === 'X') && (newBoard[2] === 'X') ||
+        (newBoard[3] === 'X') && (newBoard[4] === 'X') && (newBoard[5] === 'X') ||
+        (newBoard[6] === 'X') && (newBoard[7] === 'X') && (newBoard[8] === 'X') ||
+        (newBoard[0] === 'X') && (newBoard[3] === 'X') && (newBoard[6] === 'X') ||
+        (newBoard[1] === 'X') && (newBoard[4] === 'X') && (newBoard[7] === 'X') ||
+        (newBoard[2] === 'X') && (newBoard[5] === 'X') && (newBoard[8] === 'X') ||
+        (newBoard[0] === 'X') && (newBoard[4] === 'X') && (newBoard[8] === 'X') ||
+        (newBoard[2] === 'X') && (newBoard[4] === 'X') && (newBoard[6] === 'X')         
+        ) {
+        alert('X wins!')
+        winner = true
+        }
+    } else {
+      if (
+        (newBoard[0] === 'O') && (newBoard[1] === 'O') && (newBoard[2] === 'O') ||
+        (newBoard[3] === 'O') && (newBoard[4] === 'O') && (newBoard[5] === 'O') ||
+        (newBoard[6] === 'O') && (newBoard[7] === 'O') && (newBoard[8] === 'O') ||
+        (newBoard[0] === 'O') && (newBoard[3] === 'O') && (newBoard[6] === 'O') ||
+        (newBoard[1] === 'O') && (newBoard[4] === 'O') && (newBoard[7] === 'O') ||
+        (newBoard[2] === 'O') && (newBoard[5] === 'O') && (newBoard[8] === 'O') ||
+        (newBoard[0] === 'O') && (newBoard[4] === 'O') && (newBoard[8] === 'O') ||
+        (newBoard[2] === 'O') && (newBoard[4] === 'O') && (newBoard[6] === 'O')         
+        ) {
+        alert('O wins!')
+        winner = true
+        }
+    }    
+    if (!winner && turnNumber === 9) alert('!----Draw----!')
+  }
+
+
+  setTurnNumber(turnNumber + 1)
   setIsXTurn(!isXTurn)
   setBoard(newBoard)
   }
@@ -69,5 +109,6 @@ return (
 }
 
 export default App;
+
 
 
