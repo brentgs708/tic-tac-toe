@@ -4,7 +4,7 @@ import { checkBoard } from 'helpers'
 import { Block, Container, Row } from 'styles';
 export type SYMBOL = 'X' | 'O'
 export type BLOCK = SYMBOL | '-'
-const App = () => {
+const Room = () => {
   const [board, setBoard] = useState<BLOCK[]>([
     '-',
     '-',
@@ -104,7 +104,7 @@ return (
 
 }
 
-export default App;
+export default Room;
 
 
 
