@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { checkBoard } from 'helpers'
 import { Block, Container, Row } from 'styles';
 export type SYMBOL = 'X' | 'O'
 export type BLOCK = SYMBOL | '-'
 const Room = () => {
+  const {id}= useParams<any>()
   const [board, setBoard] = useState<BLOCK[]>([
     '-',
     '-',
@@ -81,6 +83,7 @@ function handleClear() {
 
 return (
     <Container>
+      <h1>{id}</h1>
       <h3>{message}</h3>
       <Row>
         <Block onClick={() => handleClick(0)}>{ board[0] !== '-' && board[0] }</Block>
