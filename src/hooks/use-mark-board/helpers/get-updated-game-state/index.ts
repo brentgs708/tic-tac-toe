@@ -1,4 +1,4 @@
-import { SYMBOL, BLOCK } from "typings";
+import { SYMBOL, BLOCK } from 'typings'
 import checkBoard from './check-board'
 
 
