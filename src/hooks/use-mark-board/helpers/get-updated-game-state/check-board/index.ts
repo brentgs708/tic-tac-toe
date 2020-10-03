@@ -1,9 +1,10 @@
 //import { BLOCK } from 'pages/room'
-import { checkWin } from 'helpers'
+import { SYMBOL } from 'typings'
+import checkWin from './check-win'
 
 interface Input {
   newBoard: any[]
-  isXTurn: boolean
+  playerTurn: SYMBOL
   turnNumber: number  
 }
 
@@ -11,15 +12,15 @@ type checkBoardOutput = 'XWIN' | 'OWIN' | 'DRAW' | 'NONE'
 
 
 export default function checkBoard({ 
-  isXTurn, 
+  playerTurn, 
   newBoard, 
   turnNumber, 
 }: Input): checkBoardOutput {
     
   if (turnNumber >= 5 ) {
 
-    if (isXTurn && checkWin(newBoard, 'X')) return 'XWIN'
-    if (!isXTurn && checkWin(newBoard, 'O')) return 'OWIN'
+    if (playerTurn === 'X' && checkWin(newBoard, 'X')) return 'XWIN'
+    if (playerTurn === 'O' && checkWin(newBoard, 'O')) return 'OWIN'
     if (turnNumber === 9) return 'DRAW'
 
   }

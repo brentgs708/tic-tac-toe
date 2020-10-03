@@ -2,19 +2,11 @@ import { useEffect, useState } from 'react'
 
 
 import { db } from 'services'
-import { SYMBOL } from 'typings'
+import { Room } from 'typings'
 
 
 
-interface Room {
-    board: Array<SYMBOL | null>
-    isGameDone: boolean
-    message: string
-    playerTurn: SYMBOL
-    turnNumber: number
 
-
-}
 
 interface Output {
 
@@ -23,7 +15,7 @@ interface Output {
 }
 
 
-const useRoom = (id: string): Output => {
+const useRoom = (roomId: string): Output => {
 
     const [isFetching, setIsFetching] = useState<boolean>(true)
     const [room, setRoom] = useState<Room | undefined>()
@@ -31,17 +23,17 @@ const useRoom = (id: string): Output => {
     useEffect(() => {
         const unsubscribe = db
         .collection('rooms')
-        .doc(id)
+        .doc(roomId)
         .onSnapshot((doc) => {
             if (doc.exists) setRoom(doc.data() as Room)
             else console.log('Room not found')
-            setIsFetching(false)
+            if (isFetching) setIsFetching(false)
         })
 
         return () => {
             unsubscribe()
         }
-    }, [id])
+    }, [roomId, isFetching])
 
     return { isFetching, room }
 }
