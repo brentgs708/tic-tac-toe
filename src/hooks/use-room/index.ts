@@ -1,22 +1,16 @@
 import { useEffect, useState } from 'react'
-
+import { useParams } from 'react-router-dom'
 
 import { db } from 'services'
 import { Room } from 'typings'
 
-
-
-
-
 interface Output {
-
     isFetching: boolean
     room?: Room
 }
 
-
-const useRoom = (roomId: string): Output => {
-
+const useRoom = (): Output => {
+    const {roomId}= useParams<any>()
     const [isFetching, setIsFetching] = useState<boolean>(true)
     const [room, setRoom] = useState<Room | undefined>()
 
