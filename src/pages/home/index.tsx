@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { H1, Button } from 'components'
 import { useHistory } from 'react-router-dom'
 
 
@@ -10,8 +11,8 @@ const Home: FC = () => {
    }
    return (
    <>
-      <h1>Home Page</h1>
-      <button onClick={handleClick}> Play game</button>
+      <H1>Home Page</H1>
+      <Button onClick={handleClick}> Play game</Button>
    
    </>
    )
