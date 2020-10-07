@@ -1,15 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { H1, Button } from 'components'
 import { useClearBoard, useMarkBoard, useRoom } from 'hooks'
 
 import { Block, Container, Grid, Row} from 'pages/room/styles'; //'./styles'
-
-export type SYMBOL = 'X' | 'O'
-export type BLOCK = SYMBOL | '-'
-
+import useCountDown from 'hooks/use-countdown';
 
 const Room = () => {
+  const { counter, setCounter } = useCountDown(() => {})
   const { clearBoard, isClearing } = useClearBoard()
   const { isMarking, markBoard }  = useMarkBoard()
   const { isFetching, room } = useRoom()
@@ -20,16 +18,19 @@ const Room = () => {
   const  { board, isGameDone, message, startingTurn } = room
 
 
-function handleClick(index: number){
-  if (!isMarking && !board[index] && !isGameDone) markBoard(index, room!)
+async function handleClick(index: number){
+  if (!isMarking && !board[index] && !isGameDone) {markBoard(index, room!)
+    setCounter(10)}
 }
 
-function handleClear() {
+async function handleClear() {
   clearBoard(startingTurn)
+  setCounter(10)
 }
 
 return (
     <Container>
+      <H1>Timer: {counter} second{counter === 1 ? '' : 's'}</H1>
       <h3>{message}</h3>
       <Grid marking={isMarking}>        
         <Row>

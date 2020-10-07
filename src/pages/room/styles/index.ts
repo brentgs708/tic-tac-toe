@@ -20,6 +20,9 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
   `}  
+  h3{
+    font-size:38px;
+  }
 `;
 
 export const Grid = styled.div<{marking: boolean}>`
